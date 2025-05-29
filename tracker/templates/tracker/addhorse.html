@@ -1,0 +1,20 @@
+{% extends 'tracker/base.html' %}
+
+{% block title %}Add a Horse - Equifit{% endblock %}
+
+{% block content %}
+<h1>Add a Horse</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <label for="id_horseName">Name:</label>
+    {{ form.horseName }}
+
+    <label for="id_horseAge">Age:</label>
+    {{ form.horseAge }}
+
+    <button type="submit">Save Horse</button>
+</form>
+
+<a href="{% url 'home' %}">Back to Home</a>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'tracker/base.html' %}
+
+<!-- tracker/templates/tracker/login.html -->
+
+{% block title %}Login - Equifit{% endblock %}
+{% block content %}
+    <h1>Login</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Log In</button>
+    </form>
+    {% if form.errors %}
+        <p style="color: red;">Invalid username or password.</p>
+    {% endif %}
+    {% endblock %}
+
+

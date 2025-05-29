@@ -1,0 +1,25 @@
+
+{% extends 'tracker/base.html' %}
+
+{% block title %}Home - Equifit {% endblock %}
+{% block content %}
+<h1>Welcome, {{ request.user.username }}</h1>
+
+<h2>Your Horses</h2>
+
+
+{% if horses %}
+    <ul>
+        {% for horse in horses %}
+            <li>{{ horse.horseName }} (Age: {{ horse.horseAge }})</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No horses added yet.</p>
+{% endif %}
+
+<br>
+<a href="{% url 'add_horse' %}">Add a Horse</a> |
+<a href="{% url 'login' %}">Sign Out</a>
+{% endblock %}
+

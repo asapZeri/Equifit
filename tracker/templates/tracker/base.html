@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Equifit{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'tracker/style.css' %}">
+</head>
+<body>
+
+    <div class="header">
+        <h1 class="site-title">Equifit</h1>
+    </div>
+
+    <div class="content">
+        {% block content %}
+        <!-- child templates will fill this in -->
+        {% endblock %}
+    </div>
+
+</body>
+</html>

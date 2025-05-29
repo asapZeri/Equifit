@@ -1,0 +1,20 @@
+{% extends 'tracker/base.html' %}
+
+{% block title %}Register - Equifit{% endblock %}
+
+{% block content %}
+<h1>Welcome to Equifit</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Register</button>
+</form>
+
+<p>Already have an account? <a href="{% url 'login' %}">Log in here</a></p>
+
+{% if form.errors %}
+    <p style="color: red;">Invalid username or password.</p>
+{% endif %}
+{% endblock %}
+
