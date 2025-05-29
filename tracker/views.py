@@ -4,6 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm , UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .models import Workout , Addhorse
 from .forms import HorseForm
+from django.shortcuts import get_object_or_404
 
 @login_required
 def home(request):
