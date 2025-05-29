@@ -9,11 +9,14 @@
 
 
 {% if horses %}
-    <ul>
-        {% for horse in horses %}
-            <li>{{ horse.horseName }} (Age: {{ horse.horseAge }})</li>
-        {% endfor %}
-    </ul>
+<ul>
+    {% for horse in horses %}
+        <li>
+            <a href="{% url 'horse_detail' horse.id %}">{{ horse.horseName }}</a>
+        </li>
+    {% endfor %}
+</ul>
+
 {% else %}
     <p>No horses added yet.</p>
 {% endif %}

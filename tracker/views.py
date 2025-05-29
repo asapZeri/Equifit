@@ -43,7 +43,10 @@ def add_horse(request):
     else:
         form = HorseForm()
     return render(request, 'tracker/addhorse.html', {'form': form})
-
+@login_required
+def horse_detail(request, horse_id):
+    horse = get_object_or_404(Addhorse, id=horse_id, owner=request.user)
+    return render(request, 'tracker/horse_details.html', {'horse': horse})
     
 
 

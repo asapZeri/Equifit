@@ -1,0 +1,7 @@
+{% extends 'tracker/base.html' %}
+
+{% block content %}
+    <h2>{{ horse.horseName }}</h2>
+    <p>Age: {{ horse.horseAge }}</p>
+    <a href="{% url 'home' %}">← Back to Home</a>
+{% endblock %}
