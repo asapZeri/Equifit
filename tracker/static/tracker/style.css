@@ -30,7 +30,7 @@ form input, form button {
 
 a {
     text-decoration: none;
-    color: #007bff;
+    color: black;
     box-shadow: gray;
 }
 a:hover {

@@ -1,0 +1,11 @@
+{% extends 'tracker/base.html' %}
+
+{% block content %}
+<h2>Edit {{ horse.horseName }}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Changes</button>
+</form>
+<a href="{% url 'horse_detail' horse.id %}">← Back to Horse Profile</a>
+{% endblock %}

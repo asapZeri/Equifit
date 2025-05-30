@@ -1,7 +1,38 @@
 {% extends 'tracker/base.html' %}
 
 {% block content %}
-    <h2>{{ horse.horseName }}</h2>
-    <p>Age: {{ horse.horseAge }}</p>
+
+<h2>{{ horse.horseName }}</h2>
+<p>Age: {{ horse.horseAge }}</p>
+
+<!-- Action buttons -->
+<p>
+    <a href="{% url 'edit_horse' horse.id %}">Edit Horse</a> |
+    <a href="{% url 'add_workout' horse.id %}">Add New Workout</a>
     <a href="{% url 'home' %}">← Back to Home</a>
+</p>
+
+<!-- Workouts Section -->
+<h3>Workouts</h3>
+<ul>
+    {% for workout in workouts %}
+        <li>
+            <strong>{{ workout.date }}</strong> - {{ workout.workout_type }} 
+            ({{ workout.duration_minutes }} minutes)
+            {% if workout.notes %}
+                <br>Notes: {{ workout.notes }}
+            {% endif %}
+        </li>
+    {% empty %}
+        <li>No workouts added yet.</li>
+    {% endfor %}
+</ul>
+
+<!-- Optionally, you can add a "New Workout" button here -->
+<!-- Example:
+<p>
+    <a href="{% url 'add_workout' horse.id %}">➕ Add New Workout</a>
+</p>
+-->
+
 {% endblock %}

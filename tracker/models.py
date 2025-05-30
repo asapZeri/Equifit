@@ -10,11 +10,12 @@ class Addhorse(models.Model):
     def __str__(self):
         return self.horseName
 class Workout(models.Model):
+    horse = models.ForeignKey(Addhorse, on_delete=models.CASCADE, related_name='workouts')
     date = models.DateField()
     workout_type = models.CharField(max_length=100)
     duration_minutes = models.PositiveIntegerField()
     notes = models.TextField(blank=True)
 
     def __str__(self):
-        return f"{self.workout_type} on {self.date}"
+        return f"{self.workout_type} on {self.date} for {self.horse.horseName}"
 

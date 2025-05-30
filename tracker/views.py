@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm , UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .models import Workout , Addhorse
-from .forms import HorseForm
+from .forms import HorseForm, WorkoutForm
 from django.shortcuts import get_object_or_404
 
 @login_required
@@ -46,10 +46,39 @@ def add_horse(request):
 @login_required
 def horse_detail(request, horse_id):
     horse = get_object_or_404(Addhorse, id=horse_id, owner=request.user)
-    return render(request, 'tracker/horse_details.html', {'horse': horse})
-    
+    workouts = horse.workouts.all().order_by('-date')
+    return render(request, 'tracker/horse_details.html', {'horse': horse, 'workouts': workouts})
 
 
-    
+@login_required
+def edit_horse(request, horse_id):
+    horse = get_object_or_404(Addhorse, id=horse_id, owner=request.user)
+    if request.method == 'POST':
+        form = HorseForm(request.POST, instance=horse)
+        if form.is_valid():
+            form.save()
+            return redirect('horse_detail', horse_id=horse_id)
+    else:
+        form = HorseForm(instance=horse)
+
+    return render(request, 'tracker/edit_horse.html', {'form': form, 'horse': horse})
+
+
+@login_required
+def add_workout(request, horse_id):
+    horse = get_object_or_404(Addhorse, id=horse_id, owner=request.user)
+
+    if request.method == 'POST':
+        form = WorkoutForm(request.POST)
+        if form.is_valid():
+            workout = form.save(commit=False)
+            workout.horse = horse
+            workout.save()
+            return redirect('horse_detail', horse_id=horse.id)
+    else:
+        form = WorkoutForm()
+
+    return render(request, 'tracker/add_workout.html', {'form': form, 'horse': horse})
+
 
 
