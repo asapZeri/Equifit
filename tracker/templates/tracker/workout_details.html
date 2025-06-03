@@ -1,29 +1,15 @@
 {% extends 'tracker/base.html' %}
 
 {% block content %}
+<h2>Workout Details</h2>
 
-<h2>{{ horse.horseName }}</h2>
-<p>Age: {{ horse.horseAge }}</p>
+<p>Date: {{ workout.date }}</p>
+<p>Type: {{ workout.workout_type }}</p>
+<p>Duration: {{ workout.duration_minutes }} minutes</p>
 
-<!-- Action buttons -->
-<p>
-    <a href="{% url 'home' %}">← Back to Home</a>
-</p>
+{% if workout.notes %}
+<p>Notes: {{ workout.notes }}</p>
+{% endif %}
 
-<!-- Workouts Section -->
-<h3>Workouts</h3>
-<ul>
-    {% for workout in workouts %}
-        <li>
-            <strong>{{ workout.date }}</strong> - {{ workout.workout_type }} 
-            ({{ workout.duration_minutes }} minutes)
-            {% if workout.notes %}
-                <br>Notes: {{ workout.notes }}
-            {% endif %}
-        </li>
-    {% empty %}
-        <li>No workouts added yet.</li>
-    {% endfor %}
-</ul>
-
+<p><a href="{% url 'horse_detail' workout.horse.id %}">← Back to {{ workout.horse.horseName }}</a></p>
 {% endblock %}
