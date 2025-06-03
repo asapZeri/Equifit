@@ -30,7 +30,7 @@ form input, form button {
 
 a {
     text-decoration: none;
-    color: black;
+    color: blue;
     box-shadow: gray;
 }
 a:hover {
@@ -42,7 +42,10 @@ a:hover {
     height: auto;
 }
 
-.site-title {
+.site-title a{
     color: green;
     font-size: 90px;
+    text-decoration: none;
+    cursor: pointer;
 }
+ 
