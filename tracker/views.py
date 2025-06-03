@@ -79,6 +79,3 @@ def add_workout(request, horse_id):
         form = WorkoutForm()
 
     return render(request, 'tracker/add_workout.html', {'form': form, 'horse': horse})
-
-
-
