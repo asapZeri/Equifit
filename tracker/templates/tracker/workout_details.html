@@ -7,8 +7,6 @@
 
 <!-- Action buttons -->
 <p>
-    <a href="{% url 'edit_horse' horse.id %}">Edit Horse</a> |
-    <a href="{% url 'add_workout' horse.id %}">Add New Workout</a>
     <a href="{% url 'home' %}">← Back to Home</a>
 </p>
 
@@ -22,7 +20,6 @@
             {% if workout.notes %}
                 <br>Notes: {{ workout.notes }}
             {% endif %}
-            <a href="{% url 'workout_detail' workout.id %}">← View Workout Details</a>
         </li>
     {% empty %}
         <li>No workouts added yet.</li>

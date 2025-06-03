@@ -67,7 +67,6 @@ def edit_horse(request, horse_id):
 @login_required
 def add_workout(request, horse_id):
     horse = get_object_or_404(Addhorse, id=horse_id, owner=request.user)
-
     if request.method == 'POST':
         form = WorkoutForm(request.POST)
         if form.is_valid():
@@ -79,3 +78,12 @@ def add_workout(request, horse_id):
         form = WorkoutForm()
 
     return render(request, 'tracker/add_workout.html', {'form': form, 'horse': horse})
+
+#Workout details view
+
+@login_required
+def workout_detail(request, workout_id):
+    workout = get_object_or_404(Workout, id=workout_id, horse__owner=request.user)
+    return render(request, 'tracker/workout_details.html', {'workout': workout})
+
+    
