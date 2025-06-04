@@ -20,7 +20,10 @@ class Workout(models.Model):
         LOPE = 'lope', 'Fast Gallop'
         LIGHTBREEZE = 'lightbreeze', 'Light Breeze'
         FULLSPRINT = 'fullsprint', 'Full Sprint'
-        
+    class wraps(models.TextChoices):
+        COTTONWRAPPED = 'cottonwrapper', 'Cotton Wrapped'
+        VETTAPE = 'vettape' , 'Vet Wrap Tape'
+        NONE = 'none', 'Not Wrapped'
     horse = models.ForeignKey(Addhorse, on_delete=models.CASCADE, related_name='workouts')
     date = models.DateField()
     workout_type = models.CharField(
@@ -33,8 +36,12 @@ class Workout(models.Model):
         max_length=10,
         choices=TrackCondition.choices,
         default=TrackCondition.DRY
+    )
+    wrapped = models.CharField(
+        max_length=20,
+        choices=wraps.choices,
+        default=wraps.NONE
     )    
-
     def __str__(self):
         return f"{self.workout_type} on {self.date} for {self.horse.horseName}"
 

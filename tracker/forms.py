@@ -10,4 +10,4 @@ class HorseForm(forms.ModelForm):
 class WorkoutForm(forms.ModelForm):
     class Meta:
         model = Workout
-        fields = ['date', 'workout_type', 'duration_minutes', 'notes', 'track_condition']
+        fields = ['date', 'workout_type', 'duration_minutes', 'notes', 'track_condition', 'wrapped']
