@@ -16,4 +16,6 @@
 {% endif %}
 
 <p><a href="{% url 'horse_detail' workout.horse.id %}">← Back to {{ workout.horse.horseName }}</a></p>
+<a href="{% url 'edit_workout' workout.id %}">✏️ Edit Workout</a>
 {% endblock %}
+

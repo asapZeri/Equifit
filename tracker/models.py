@@ -44,4 +44,3 @@ class Workout(models.Model):
     )    
     def __str__(self):
         return f"{self.workout_type} on {self.date} for {self.horse.horseName}"
-

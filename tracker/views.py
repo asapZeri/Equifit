@@ -86,4 +86,17 @@ def workout_detail(request, workout_id):
     workout = get_object_or_404(Workout, id=workout_id, horse__owner=request.user)
     return render(request, 'tracker/workout_details.html', {'workout': workout})
 
-    
+#Edit workout flow
+@login_required
+def edit_workout(request, workout_id):
+    workout = get_object_or_404(Workout, id=workout_id, horse__owner=request.user)
+
+    if request.method == 'POST':
+        form = WorkoutForm(request.POST, instance=workout)
+        if form.is_valid():
+            form.save()
+            return redirect('workout_detail', workout_id=workout.id)
+    else:
+        form = WorkoutForm(instance=workout)
+
+    return render(request, 'tracker/edit_workout.html', {'form': form,'workout': workout})
