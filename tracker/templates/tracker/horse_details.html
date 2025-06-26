@@ -9,7 +9,6 @@
 <p>
     <a href="{% url 'edit_horse' horse.id %}">Edit Horse</a> |
     <a href="{% url 'add_workout' horse.id %}">Add New Workout</a>
-    <a href="{% url 'home' %}">← Back to Home</a>
 </p>
 
 <!-- Workouts Section -->
@@ -28,5 +27,8 @@
         <li>No workouts added yet.</li>
     {% endfor %}
 </ul>
+<p>
+    <a href="{% url 'home' %}">← Back to Home</a>
+</p>
 
 {% endblock %}

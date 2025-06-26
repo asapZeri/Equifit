@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Workout , Addhorse
 from .forms import HorseForm, WorkoutForm
 from django.shortcuts import get_object_or_404
+from django.contrib import messages
 
 @login_required
 def home(request):
@@ -100,3 +101,13 @@ def edit_workout(request, workout_id):
         form = WorkoutForm(instance=workout)
 
     return render(request, 'tracker/edit_workout.html', {'form': form,'workout': workout})
+@login_required
+def delete_workout(request, workout_id):
+    workout = get_object_or_404(Workout, id=workout_id, horse__owner=request.user)
+
+    if request.method == 'POST':
+        horse_id = workout.horse.id
+        workout.delete()
+        messages.success(request, "Workout Has Been Deleted.")
+        return redirect('horse_detail', horse_id=horse_id)
+    return render(request, 'tracker/delete_workout.html', {'workout': workout})

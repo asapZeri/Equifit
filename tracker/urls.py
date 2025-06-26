@@ -14,4 +14,6 @@ urlpatterns = [
     path('horse/<int:horse_id>/add_workout/', views.add_workout, name='add_workout'),
     path('workout/<int:workout_id>/', views.workout_detail, name='workout_detail'),
     path('workout/<int:workout_id>/edit/', views.edit_workout, name='edit_workout'),
+    path('workout/<int:workout_id>/delete/', views.delete_workout, name='delete_workout'),
+
 ]
