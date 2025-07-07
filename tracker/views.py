@@ -35,7 +35,7 @@ def register_view(request):
     return render(request, 'tracker/register.html', {'form': form})
 def add_horse(request):
     if request.method == 'POST':
-        form = HorseForm(request.POST)
+        form = HorseForm(request.POST, request.FILES)
         if form.is_valid():
             horse = form.save(commit=False)
             horse.owner = request.user 
@@ -55,7 +55,7 @@ def horse_detail(request, horse_id):
 def edit_horse(request, horse_id):
     horse = get_object_or_404(Addhorse, id=horse_id, owner=request.user)
     if request.method == 'POST':
-        form = HorseForm(request.POST, instance=horse)
+        form = HorseForm(request.POST,request.FILES,  instance=horse)
         if form.is_valid():
             form.save()
             return redirect('horse_detail', horse_id=horse_id)

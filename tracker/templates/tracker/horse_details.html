@@ -5,6 +5,13 @@
 <h2>{{ horse.horseName }}</h2>
 <p>Age: {{ horse.horseAge }}</p>
 
+{% if horse.profile_pic %}
+  <img src="{{ horse.profile_pic.url }}" alt="{{ horse.horseName }}" style="max-width: 200px;">
+{% else %}
+  <p>No profile picture uploaded.</p>
+{% endif %}
+
+
 <!-- Action buttons -->
 <p>
     <a href="{% url 'edit_horse' horse.id %}">Edit Horse</a> |

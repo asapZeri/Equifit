@@ -6,6 +6,7 @@ class Addhorse(models.Model):
     horseName = models.CharField(max_length=100)
     horseAge = models.PositiveIntegerField()
     owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    profile_pic = models.ImageField(upload_to='horse_pics/', blank=True, null=True)
 
     def __str__(self):
         return self.horseName
