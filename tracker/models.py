@@ -45,3 +45,19 @@ class Workout(models.Model):
     )    
     def __str__(self):
         return f"{self.workout_type} on {self.date} for {self.horse.horseName}"
+    
+class Addrace(models.Model):
+    class raceType(models.TextChoices):
+        CHIEF = 'chief', 'Chief Race'
+        RELAY = 'relay', 'Relay Race'
+    race = models.CharField(
+        max_length=20,
+        choices=raceType.choices
+    )
+    date = models.DateField()
+    horse = models.ForeignKey(Addhorse, on_delete=models.CASCADE, related_name='races')
+    notes = models.TextField(blank=True)
+    name_of_race = models.CharField(max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.race} at {self.name_of_race} on {self.date} for {self.horse.horseName}"

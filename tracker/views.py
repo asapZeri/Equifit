@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm , UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .models import Workout , Addhorse
-from .forms import HorseForm, WorkoutForm
+from .forms import HorseForm, WorkoutForm , RaceForm
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 
@@ -48,7 +48,8 @@ def add_horse(request):
 def horse_detail(request, horse_id):
     horse = get_object_or_404(Addhorse, id=horse_id, owner=request.user)
     workouts = horse.workouts.all().order_by('-date')
-    return render(request, 'tracker/horse_details.html', {'horse': horse, 'workouts': workouts})
+    races = horse.races.all().order_by('-date')
+    return render(request, 'tracker/horse_details.html', {'horse': horse, 'workouts': workouts , 'races' : races})
 
 
 @login_required
@@ -111,3 +112,19 @@ def delete_workout(request, workout_id):
         messages.success(request, "Workout Has Been Deleted.")
         return redirect('horse_detail', horse_id=horse_id)
     return render(request, 'tracker/delete_workout.html', {'workout': workout})
+
+
+@login_required
+def add_race(request, race_id):
+    horse = get_object_or_404(Addhorse, id=race_id, owner=request.user)
+    if request.method == 'POST':
+        form = RaceForm(request.POST)
+        if form.is_valid():
+            race = form.save(commit=False)
+            race.horse = horse
+            race.save()
+            return redirect('horse_detail', horse_id=horse.id)
+    else:
+        form = RaceForm()
+
+    return render(request, 'tracker/add_race.html', {'form': form, 'horse': horse})

@@ -1,0 +1,15 @@
+{% extends 'tracker/base.html' %}
+
+{% block content %}
+<h2>Add Race for {{ horse.horseName }}</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Race</button>
+</form>
+
+<p>
+    <a href="{% url 'horse_detail' horse.id %}">← Back to {{ horse.horseName }}</a>
+</p>
+{% endblock %}
