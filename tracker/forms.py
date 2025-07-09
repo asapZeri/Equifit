@@ -15,4 +15,4 @@ class WorkoutForm(forms.ModelForm):
 class RaceForm(forms.ModelForm):
     class Meta:
         model = Addrace
-        fields = ['race', 'name_of_race', 'date' , 'notes']
+        fields = ['race', 'name_of_race','place', 'date' , 'notes']

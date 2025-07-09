@@ -15,8 +15,8 @@
 <!-- Action buttons -->
 <p>
     <a href="{% url 'edit_horse' horse.id %}">Edit Horse</a> |
-    <a href="{% url 'add_workout' horse.id %}">Add New Workout</a>
-    <a href="{% url 'add_race' horse.id %}">Add Race</a>
+    <a href="{% url 'add_workout' horse.id %}">Add New Workout</a> |
+    <a href="{% url 'add_race' horse.id %}">Add Race</a> |
 </p>
 
 
@@ -26,9 +26,9 @@
 <ul>
     {% for race in races %}
         <li>
-            <strong>{{ race.date }}</strong> - {{ race.race_type }} 
-            {% if race.notes %}
-                <br>Notes: {{ race.notes }}
+            <strong>{{ race.date }}</strong> - {{ race.name_of_race }} 
+            {% if race.place %}
+                <br>Place: {{ race.place }}
             {% endif %}
         </li>
     {% empty %}
@@ -36,7 +36,7 @@
     {% endfor %}
 </ul>
 <!-- Workouts Section -->
-<h4>Workouts</h4>
+<h3>Workouts</h3>
 <ul>
     {% for workout in workouts %}
         <li>

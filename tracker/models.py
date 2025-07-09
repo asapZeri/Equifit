@@ -58,6 +58,7 @@ class Addrace(models.Model):
     horse = models.ForeignKey(Addhorse, on_delete=models.CASCADE, related_name='races')
     notes = models.TextField(blank=True)
     name_of_race = models.CharField(max_length=100, blank=True, null=True)
+    place = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return f"{self.race} at {self.name_of_race} on {self.date} for {self.horse.horseName}"
